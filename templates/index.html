@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="text-area" name="job_description" placeholder="Enter job description" required/>
+            <input type="file" name="resume" placeholder="Upload your resume" required/>
+            <button type="submit">Analyze</button>
+        </form>
+    </div>
+</body>
+</html>
