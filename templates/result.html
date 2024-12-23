@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            background-color: #f4f4f9;
+            overflow: hidden;
+        }
+        
+        h1 {
+        font-size: xx-large; /* Keep your size */
+        font-weight: bold;
+        background-image: linear-gradient(90deg, 
+            #ff0000, #795e43, #3665bc, #00ff00, 
+            #0000ff, #4b0082, #9400d3); /* Rainbow colors */
+        background-size: 400% 100%; /* Extend gradient */
+        color: transparent; /* Make text transparent */
+        -webkit-background-clip: text; /* Clip gradient to text */
+        background-clip: text; /* Works in most modern browsers */
+        animation: colorTransition 5s infinite linear; /* Animation effect */
+        text-align: center;
+    }
+
+    @keyframes colorTransition {
+        0% {
+            background-position: 0% 50%; /* Start gradient */
+        }
+        50% {
+            background-position: 100% 50%; /* Move gradient */
+        }
+        100% {
+            background-position: 0% 50%; /* Reset gradient */
+        }
+    }   
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            height: 95vh;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .score-container {
+            flex: 1;
+            text-align: center;
+            padding: 10px 10px 40px 0px;  /* Reduced top and bottom padding */
+            border-right: 1px solid #ddd;
+            background: linear-gradient(135deg, #f0f4ff, #d9e7ff);
+            position: sticky;
+            top: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;  /* Ensures elements stay at the top */
+        }
+
+        .circle {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            background: linear-gradient(#ed0b1e 0%, #1506b6 25%, #da07ac 50%, #05ae11 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .circle-text {
+            position: absolute;
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .suggestions-container {
+            flex: 2;
+            padding: 40px;
+            background: #fff;
+            overflow-y: auto;
+            height: 100%;
+        }
+
+
+
+.skills-container {
+    display: flex;               
+    flex-wrap: wrap;            
+    gap: 20px;                   
+    justify-content: flex-start;
+}
+
+.skill-box {
+    background-color: #f0f8ff;
+    border: 1px solid #00acc1; 
+    padding: 10px 20px;        
+    border-radius: 8px;
+    font-size: 16px;
+    text-align: center;
+    min-width: 150px;           
+    max-width: 200px;           
+    flex: 1 1 calc(25% - 40px); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+    text-transform: uppercase;
+}
+
+.skill-box:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adds a shadow for depth */
+    border: 2px solid #007bff;   /* Blue border outline on hover */
+}
+
+
+        .suggestions-container h2 {
+            margin-top: 0;
+        }
+
+        .suggestions-container ul {
+            padding: 0;
+            list-style-type: none;
+        }
+        .emoji-container {
+    display: inline-block;
+    text-align: center;
+    margin-top: 3px;
+    animation: fade-in 1.5s ease-out forwards; /* Fade-in transition */
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.emoji {
+    font-size: 70px;
+    transition: transform 0.3s ease, color 0.3s ease; /* Smooth transitions */
+}
+/* Container for emojis */
+
+
+/* Emoji styling */
+.emoji-with-line {
+    font-size: 70px; /* Adjust emoji size */
+    display: inline-block;
+    position: relative;
+    margin-bottom: 20px; /* Space between emoji and label */
+}
+
+/* Line below emoji */
+.emoji-with-line::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    width: 80px; /* Line width */
+    height: 3px; /* Line thickness */
+    background-color: #ff5733; /* Line color */
+    transform: translateX(-50%);
+}
+
+/* Label text below the line */
+.emoji-label {
+    margin-top: 10px; /* Space between line and text */
+    font-size: 18px; /* Adjust text size */
+    font-weight: bold; /* Make it bold */
+    color: #333; /* Text color */
+}
+
+
+.emoji:hover {
+    transform: scale(1.3) rotate(5deg); /* Slight hover effect */
+    color: #ff5733;
+}
+
+
+        .suggestions-container ul li {
+            background: #f9f9f9;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #ae2db4;
+        }
+
+        /* GIF Animation */
+        #gif {
+    position: fixed;
+    bottom: 5%; /* Start at the bottom */
+    left: 5%;   /* Start at the left */
+    z-index: 9999;
+    animation: moveGif 5s forwards;
+    width: 100px; /* Adjust the size */
+    height: 100px; /* Adjust the size */
+}
+.back-button-container {
+    position: absolute;
+    margin-left: 80%;
+    bottom: 50px;
+    right: 50px;
+    z-index: 9999;
+}
+
+.back-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+@keyframes moveGif {
+    0% {
+        bottom: 5%;  /* Starting position (bottom left) */
+        left: 5%;    /* Starting position (bottom left) */
+    }
+    100% {
+        bottom: 100%; /* Move to the top */
+        left: 30%;   /* Move to the right */
+    }
+}
+
+
+
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .score-container {
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Matching Score -->
+        <div class="score-container">
+            <h1>Resume Analysis Results</h1>
+            <div class="emoji-container">
+                {% if similarity_score <= 50 %}
+                    <div class="emoji-with-line">
+                        😞
+                        <div class="emoji-label">Average-Work Hard</div>
+                    </div>
+                {% elif similarity_score > 50 and similarity_score <= 70 %}
+                    <div class="emoji-with-line">
+                        😇
+                        <div class="emoji-label">Good-Improve to be AWSOME!!!</div>
+                    </div>
+                {% else %}
+                    <div class="emoji-with-line">
+                        🤩
+                        <div class="emoji-label">Awesome-You are Almost there</div>
+                    </div>
+                {% endif %}
+            </div>
+            <h2>Matching Score:</h2>
+            <div class="circle" id="progress-circle">
+                <span class="circle-text" id="progress-text">0%</span>
+            </div>
+        </div>
+
+        <!-- Suggestions for Improvement -->
+        <div class="suggestions-container">
+            <h1>Suggestions for Improvement:</h1>
+            <h3>💻 Technical Skills:</h3>
+            {% if suggestions.technical_skills %}
+            
+            <div class="skills-container" id="technical-skills-list">
+                {% for skill in suggestions.technical_skills %}
+                    <div class="skill-box" style="padding-left: 10px;"> 
+                        {{ skill }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No modifications in this field</p>
+        {% endif %}
+        <h3>🧑‍💼 Soft Skills:</h3>
+        {% if suggestions.soft_skills %}
+           
+            <div class="skills-container" id="soft-skills-list">
+                {% for skill in suggestions.soft_skills %}
+                    <div class="skill-box" style="padding-left: 10px;"> 
+                        {{ skill }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No modifications in this field</p>
+        {% endif %}
+        <h3>🛠 Tools:</h3>
+        {% if suggestions.tools %}
+            
+            <div class="skills-container" id="tools-list">
+                {% for tool in suggestions.tools %}
+                    <div class="skill-box" style="padding-left: 10px;">
+                        {{ tool }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No modifications in this field</p>
+        {% endif %}
+        
+            
+        </div>
+    </div>
+    <div class="back-button-container">
+        <a href="{{ url_for('upload_resume') }}" class="back-button">⬅️ Back</a>
+    </div>
+    
+
+    <!-- Progress Circle and Skill Animation -->
+    <script>
+        const targetScore = {{ similarity_score|round(2) }};
+        const progressCircle = document.getElementById('progress-circle');
+        const progressText = document.getElementById('progress-text');
+        let currentScore = 0;
+
+        function animateProgress() {
+            const interval = setInterval(() => {
+                if (currentScore >= targetScore) {
+                    clearInterval(interval);
+                } else {
+                    currentScore += 0.5;
+                    progressText.textContent = `${Math.min(currentScore.toFixed(1), targetScore)}%`;
+
+                    const totalAngle = (currentScore / 100) * 360;
+
+                    progressCircle.style.background = `conic-gradient(
+                        red 0deg, 
+                        yellow ${(totalAngle / 2)}deg, 
+                        green ${totalAngle}deg,
+                        #ddd ${totalAngle}deg
+                    )`;
+                }
+            }, 20);
+        }
+
+        function animateSkills(sectionId) {
+            const skills = document.querySelectorAll(`#${sectionId} li`);
+            let delay = 0;
+
+            skills.forEach(skill => {
+                setTimeout(() => {
+                    skill.style.opacity = 1;
+                    skill.style.transform = 'translateY(0)';
+                }, delay);
+                delay += 200;
+            });
+        }
+
+        window.onload = () => {
+            animateProgress();
+            if (document.getElementById('technical-skills-list')) {
+                animateSkills('technical-skills-list');
+            }
+            if (document.getElementById('soft-skills-list')) {
+                animateSkills('soft-skills-list');
+            }
+            if (document.getElementById('tools-list')) {
+                animateSkills('tools-list');
+            }
+
+            // Play the GIF animation on result page
+            const gif = document.createElement('img');
+            gif.src = "https://media.tenor.com/GocCvG7hs78AAAAi/rocket-joypixels.gif";
+            gif.id = "gif";
+            document.body.appendChild(gif);
+        };
+    </script>
+</body>
+</html>

@@ -3,16 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Analyzer</title>
+    <title>Resume Analyzer</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <div>
-        <form action="/upload" method="post" enctype="multipart/form-data">
-            <input type="text-area" name="job_description" placeholder="Enter job description" required/>
-            <input type="file" name="resume" placeholder="Upload your resume" required/>
-            <button type="submit">Analyze</button>
+    <div class="wrapper">
+    <div class="welcome">
+        <h3>Welcome...!!! </h3>
+    </div>
+    <div class="container">
+        <h1>Resume and Job Description Analyzer</h1>
+        <form action="{{ url_for('upload_resume') }}" method="POST" enctype="multipart/form-data" onsubmit="startAnalysis()">
+
+            <label for="job_description">Paste Job Description:</label>
+            <textarea id="job_description" name="job_description" rows="10" cols="50" placeholder="Paste the job description here..." required></textarea>
+            <br>
+            <label for="resume">Upload Resume (PDF/DOCX):</label>
+            <input type="file" name="resume" id="resume" required>
+            <br>
+            
+            <div class="button-container">
+                <button id="analyzeButton" type="submit">
+                    <span id="spinner" class="spinner" style="display:none;"></span>
+                    <span id="buttonText">Analyze</span>
+                </button>
+                <div class="back-button-container">
+                    <a href="{{ url_for('home') }}" class="back-button">Logout</a>
+                </div>
+            </div>
         </form>
     </div>
+</div>
+    <script>
+        function startAnalysis() {
+            const analyzeButton = document.getElementById('analyzeButton');
+            const spinner = document.getElementById('spinner');
+            const buttonText = document.getElementById('buttonText');
+
+            // Disable the button to prevent multiple clicks
+            analyzeButton.disabled = true;
+
+            // Show the spinner and update the button text
+            spinner.style.display = 'inline-block';
+            buttonText.textContent = 'Analyzing...';
+
+            // Allow form submission to proceed
+            return true;
+        }
+    </script>
 </body>
 </html>

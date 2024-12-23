@@ -1,0 +1,204 @@
+@import url('http://fonts.googleapis.com/css2?family=Poppins');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('login_image1.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px; /* Space between header and form */
+}
+
+.logo {
+    font-size: 2.5em;
+    color: #fff;
+    user-select: none;
+    font-weight: bold;
+}
+
+.wrapper {
+    position: relative;
+    width: 400px; /* Adjust the container width */
+    height: auto; /* Allow dynamic height */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+ 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-box {
+    width: 100%;
+    padding: 20px;
+}
+
+.form-box h2 {
+    font-size: 2em;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.input-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #fff;
+    margin: 30px 0;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: #fff;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.input-box .form-control:focus~label,
+.input-box .form-control:valid~label {
+    top: -10px;
+    font-size: 0.9em;
+    color: #fff;
+}
+
+.input-box .form-control {
+    width: 100%;
+    background: transparent;
+    border: none;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+    padding: 0 35px 0 5px;
+    outline: none;
+}
+
+.input-box .icon {
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: #fff;
+    line-height: 50px;
+}
+
+.remember-forgot {
+    font-size: 0.9em;
+    color: #fff;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remember-forgot a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #333;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: #ddd;
+}
+
+.login-register {
+    font-size: 0.9em;
+    color: #fff;
+    text-align: center;
+    font-weight: 500;
+    margin: 20px 0;
+}
+
+.login-register a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-register a:hover {
+    text-decoration: underline;
+}
+
+.flash-message {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.flash-message.success {
+    background-color: #4CAF50;
+}
+
+.flash-message.error {
+    background-color: #f44336;
+}
+@keyframes gradientTransition {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.heading {
+    font-size: 1.5em;
+    font-weight: 600;
+    text-align: center;
+    background: linear-gradient(to right, #f8b400, #ffdb58, #00bcd4, #8bc34a, #f8b400);
+    background-size: 200% auto; /* Allows the animation to move across */
+    -webkit-background-clip: text; /* Clips the gradient to the text */
+    color: transparent; /* Hides the solid color text */
+    animation: gradientTransition 5s infinite linear; /* Smooth left-to-right transition */
+}
+.para1 {
+    font-size: 1.5em;
+    text-align: center;
+    color: #cccccc; /* Lighter color for the text */
+    font-weight: normal;
+}
+

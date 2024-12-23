@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+</head>
+<body>
+    <header>
+        <p class="para1">Sign Up to explore our <span class="heading">Smart Resume Analyzer</span> Website!!!</p>
+
+    </header>
+    <div class="wrapper" style="width: 500px; height: 620px;">
+        <div class="form-box signup">
+            <h2>Sign Up</h2>
+            {% with message = get_flashed_messages(with_categories=true) %}
+            {% if message %}
+                <div class="flash-message {{ message[0][0] }}">
+                    <p>{{ message[0][1] }}</p>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+            <form action="{{ url_for('signup') }}" method='post'>
+                {{ form.hidden_tag() }}
+
+                
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="person-circle-outline"></ion-icon>
+                    </span>
+                    {{ form.name(class="form-control", id="name" , autocomplete="off") }} 
+                    {{ form.name.label(class="label") }}
+                </div>
+
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="mail"></ion-icon>
+                    </span>
+                    {{ form.email(class="form-control", id="email" , autocomplete="off") }} 
+                    {{ form.email.label(class="label") }}
+                </div>
+
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="lock-closed"></ion-icon>
+                    </span>
+                    {{ form.password(class="form-control", id="password") }} 
+                    {{ form.password.label(class="label") }}
+                </div>
+
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="lock-closed"></ion-icon>
+                    </span>
+                    {{ form.confirm_password(class="form-control", id="confirm_password") }}
+                    {{ form.confirm_password.label(class="label") }}
+                </div>
+
+                <div class="gender-input-box">
+                    <label class="label" for="gender-male" style="font-size: 1em; color: #fff; font-weight: 500; display: block; margin-bottom: 10px;">
+                        Gender
+                    </label>
+                    <div style="display: flex; gap: 20px;">
+                        <div style="display: flex; align-items: center;">
+                            <input class="form-check-input" id="gender-male" name="gender" type="radio" value="male" style="margin-right: 5px;">
+                            <label for="gender-male" style="color: #fff;">Male</label>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <input class="form-check-input" id="gender-female" name="gender" type="radio" value="female" style="margin-right: 5px;">
+                            <label for="gender-female" style="color: #fff;">Female</label>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <button type="submit" class="btn">{{ form.submit.label }}</button>
+                <div class="login-register">
+                    <p>Already have an account? <a href="{{ url_for('home') }}" class="register-link">Login</a></p>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
