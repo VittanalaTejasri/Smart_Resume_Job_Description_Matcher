@@ -9,6 +9,7 @@ This web application helps match resumes with job descriptions by analyzing both
   Semantic Matching: Uses BERT to compute semantic similarity between job descriptions and resumes.
   Keyword Extraction: Identifies key skills, tools, and other important keywords from both job descriptions and resumes using spaCy.
   Suggestions for Improvement: The app suggests missing keywords, categorized into technical skills, soft skills, and tools, to help users improve their resumes.
+  
 ----->Technologies Used
   Flask: Web framework to handle backend logic and routing.
   spaCy: NLP library for text processing and keyword extraction.
@@ -18,6 +19,7 @@ This web application helps match resumes with job descriptions by analyzing both
   python-docx: To extract text from DOCX files.
   WTForms: To manage web forms for user sign up and login.
   Werkzeug: For file handling and secure file uploads.
+  
 ------>How It Works
   Sign Up and Login: Users can register an account and log in to access the resume matching feature.
   Uploading Resumes: After logging in, users can upload a resume (PDF or DOCX format) and enter a job description.
